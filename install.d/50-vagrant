@@ -33,12 +33,12 @@ chmod 700 ~vagrant/.ssh
 chown -R vagrant:vagrant ~vagrant/.ssh
 
 #TODO: set this up to be nice
-#echo vagrant | passwd vagrant --stdin
-#echo vagrant | passwd root --stdin
+echo -e "vagrant\nvagrant" | passwd vagrant
+echo -e "vagrant\nvagrant" | passwd root
 
-echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/suoders
+mkdir -p /etc/sudoers.d
+echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/50-vagrant
+chmod 0440 /etc/sudoers.d/50-vagrant
+
 
 echo 'UseDNS no' >> /etc/ssh/sshd_config
-
-
-
